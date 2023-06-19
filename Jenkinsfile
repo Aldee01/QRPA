@@ -32,7 +32,8 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                sh 'aws ecs update-service --cluster aldee_claster --service alain_service --force-new-deployment --region ca-central-1'
+               sh 'echo developement done'
+               // sh 'aws ecs update-service --cluster aldee_claster --service alain_service --force-new-deployment --region ca-central-1'
             }
         }
        
