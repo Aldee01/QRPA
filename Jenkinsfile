@@ -10,7 +10,8 @@ pipeline {
 
          stage('Sonarqube analysis') {
              environment {
-              scanner-home = tool 'sonnar-scanner'}
+              scanner-home = tool 'sonnar-scanner'
+             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_TOKEN', installationName: 'Dave')
                 {
