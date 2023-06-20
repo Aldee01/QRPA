@@ -9,15 +9,15 @@ pipeline {
         }
 
          stage('Sonarqube analysis') {
-              def scannerHome = tool 'SonarScanner 4.0';
-             // environment {
-             //  scanner-home = tool 'sonnar-scanner'
-             // }
+              // def scannerHome = tool 'SonarScanner 4.0';
+              environment {
+               scannerHome = tool "SonarScanner 4.0"
+              }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_TOKEN', installationName: 'Sonarcloud')
                 {
                     sh '''
-                       "${scannerHome}/bin/sonar-scanner \
+                       ${scannerHome}/bin/sonar-scanner \
                           -Dsonar.organization=aldee01 \
                           -Dsonar.projectKey=aldee01_newproject \
                           -Dsonar.sources=. \
