@@ -7,6 +7,23 @@ pipeline {
                 sh 'docker build -t aldee01/qrpa .'
             }
         }
+
+         stage('Sonarqube analysis') {
+             environment {
+              scanner-home = tool 'sonnar-scanner'
+            steps {
+                withSonarQubeEnv(credentialsId 'SONAR_TOKEN', installationName: 'Dave')
+                {
+                    sh '''
+                        sonar-scanner \
+                          -Dsonar.organization=aldee01 \
+                          -Dsonar.projectKey=aldee01_newproject \
+                          -Dsonar.sources=. \
+                          -Dsonar.host.url=https://sonarcloud.io
+                      ''' 
+                }
+            }
+        }
         
         stage('Push') {
             steps {
