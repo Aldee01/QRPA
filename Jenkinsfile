@@ -11,7 +11,7 @@ pipeline {
          stage('Sonarqube analysis') {
               // def scannerHome = tool 'SonarScanner 4.0';
               environment {
-               scannerHome = tool "SonarScanner 4.0"
+               scannerHome = tool "Dave"
               }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_TOKEN', installationName: 'Sonarcloud')
